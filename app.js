@@ -1,17 +1,19 @@
 const { text } = require("express");
 const express = require("express");
-const session = require('express-session');
+const session = require('cookie-session');
 const bcrypt = require('bcrypt');
 const { redirect, json, type } = require("express/lib/response");
-const app = express();
+
 const mysql = require('mysql2');
 const fs = require('fs');
 const { stringify } = require('csv-stringify/sync');
 const Iconv = require('iconv-lite');
 const e = require("express");
 
+
 const port = process.env.PORT;
 
+const app = express()
 
 
 app.use(express.static('public'));
