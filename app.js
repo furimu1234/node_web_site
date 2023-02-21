@@ -12,7 +12,6 @@ const e = require("express");
 
 
 const port = process.env.PORT;
-console.log(port)
 
 const app = express()
 
@@ -377,8 +376,9 @@ app.get('/data/:deviceid',(req,res,next)=>{
 
 //トップページ戻り保存していたセッション情報を破棄する(ログアウト)
 app.get('/logout',(req,res)=>{
-  req.session = null;
-  redirect("/")
+  req.session=null
+  res.redirect('/');
+  
 });
 
 //指定したポート番号でサーバ構築
