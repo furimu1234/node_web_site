@@ -7,6 +7,6 @@ COPY . .
 RUN npm install yarn
 
 RUN yarn install
-sysctl fs.inotify.max_user_watches=24288
+pkill -f node
 
 EXPOSE 8080
