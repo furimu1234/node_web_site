@@ -1,0 +1,238 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>line chart</title>
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
+    <style>
+      /* main{
+        float: left;
+      } */
+      main{
+        display: flex;
+        border: 1px solid #333;
+      }
+      flex
+      main div{
+        border: 1px solid #333;
+      }
+      /* .contents{
+        background: #ffd87c;
+      }
+      .data{
+        background: #9ddbfc;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- <h1>心拍データ</h1> -->
+
+       
+
+    <main>
+       <div class="data">
+        <canvas id="fukuoka_temperature_chart" width="1000" height="750"></canvas>
+       </div>
+       <div class="contents">
+        <div class="num">
+          <% let datas = locals.result %>
+  
+          <% datas.forEach((e,index) =>{ %>
+
+            <% let data = e['data'] %>  
+            <% if(index === 0){ %> 
+              <% let max = '最大値' %> 
+              <%= max %> 
+            <% }else{ %> 
+              <% let min = '最低値' %> 
+              <%= min %> 
+            <% } %> 
+            <h2><%= data %> </h2>
+          <% }) %>
+        </div>
+        <div class="myturn">
+          <form action="/my" method="get">
+            <input type="submit" value="マイページに戻る" class="button">
+          </form>
+        </div>
+      </div>
+      
+    </main>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+
+    <script >     
+      let title  = []
+      let D = []
+      window.onload = function () {
+
+        let Data;
+        let tmpData2 = [];
+        let = url2 = '/limit.csv';
+        limit(url2)
+      // console.log(numlimit)
+        function limit(url) {
+        const req = new XMLHttpRequest();
+        // const filePath = './result.csv'; //CSVファイルのパスは適宜変更してください。
+        req.open('GET', url, true);
+        req.onload = function() {
+        data2 = csv2Array2(req.responseText);
+        for (var row in data2) {
+          tmpData2.push(data2[row][0])
+        }
+        Data = parseInt(tmpData2[0]); // 123
+        // console.log(typeof Data + ' : ' +  Data)
+        drawBarChart2(Data);
+        }
+        req.send(null);
+        };
+
+        function csv2Array2(str) { 
+          /*
+          ["numlimit", value, ""]
+
+          */
+          //ここまで処理できた
+          // console.log(str)
+            var csvData = [];
+            var lines = str.split('\n');
+            title = lines[0].split(',');
+            
+            for (var i = 1; i < lines.length; ++i) {
+                var cells = lines[i].split(',');
+                csvData.push(cells);
+            }
+            return csvData;
+        };
+          
+        function drawBarChart2(d){
+          let url = '/result.csv'
+          main(url,d);
+        }
+          
+        function main(url,d) {
+            const req = new XMLHttpRequest();
+            // const filePath = './result.csv'; //CSVファイルのパスは適宜変更してください。
+            req.open('GET', url, true);
+            req.onload = function() {
+              data = csv2Array(req.responseText);
+              //data
+              console.log(data)
+              drawBarChart(data,d);
+            }
+            req.send(null);
+        };
+          
+
+        function csv2Array(str) { //
+            var csvData = [];
+            var lines = str.split('\n');
+            title = lines[0].split(',');
+            for (var i = 1; i < lines.length; ++i) {
+                var cells = lines[i].split(',');
+                csvData.push(cells);
+            }
+            return csvData;
+        };
+
+        function drawBarChart(data,d) {
+            var tmpLabels = [], //ラベル（項目はひとつ）
+                tmpData1 = [];
+            let Data2
+                 //データと日付のカラムを抽出
+            for (var row in data) {
+                tmpLabels.push(data[row][2])
+                tmpData1.push(data[row][3])
+            }
+            
+            tmpLabels = tmpLabels.slice(0, -1);
+
+        
+        let pointBgcolors = generatePointBgcolor(tmpLabels, d, 'rgba(0, 178, 108, 1.0)', 'rgba(255, 0, 0, 1.0)');
+        let borderPoints = [];
+        //しきい値に線を引くためのポイント
+        for(let i = 0; i < tmpLabels.length; i++){
+          borderPoints.push(d);
+        }
+        // tmpLabels.forEach((e)=>{
+        //   borderPoints.push(80);
+        //   consoloe.log(borderPoints)
+        // })
+
+        let context = document.querySelector("#fukuoka_temperature_chart").getContext('2d')
+        new Chart(context, {
+          type: 'line',
+          data: {
+            labels:tmpData1,
+            // ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            datasets: [
+              {
+                label: '正常値',
+                borderColor: 'rgba(0, 178, 108, 1.0)',
+                backgroundColor: 'rgba(0, 178, 108, 1.0)',
+                },{
+                label:'異常値',
+                data: tmpLabels,
+                borderColor: '#808080',
+                pointRadius : 5,   
+                backgroundColor: pointBgcolors,
+                fill : false
+              },{
+                label: 'しきい値',
+                // fillstyle: 'rgba(255, 0, 0, 1.0)',
+                data: borderPoints ,
+                borderColor: 'rgba(255, 9, 232, 1)',
+                backgroundColor : 'rgba(255, 9, 232, 1)',
+                // しきい値のマーカーを表示させたくない
+                pointRadius: 1,
+                // マウスホバー時のマーカーも表示させない
+                pointHoverRadius: 1,
+                fill: false,
+                borderWidth: 1
+              }
+            ],
+          },
+          options: {
+            responsive: true  ,
+            maintainAspectRatio: false,
+            plugins: {
+            title: {
+                display: true,
+                text: '心拍数グラフ'
+            },
+            legend:{
+              position:"right",
+              
+            }
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 200,
+                    ticks: {
+                        stepSize: 10
+                    }
+                },
+            },
+          }
+        })
+        //正常値と異常値のポイントに色を振り分ける
+        function generatePointBgcolor(points, borderPoint, safeColor, outColor) {
+          var bgColors = [];
+
+          for(var i = 0, len = points.length; i < len; i++) {
+            if(points[i] < borderPoint) {
+              bgColors.push(safeColor);
+            } else {
+              bgColors.push(outColor);
+            }
+          }
+          return bgColors;
+        }
+      }
+    }
+    </script>
+    
+  
+  </body>
+</html>

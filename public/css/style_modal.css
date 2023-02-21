@@ -1,0 +1,85 @@
+/* モーダルウィンドウ */
+.modal-window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 550px;
+    background-color: #dfdddd;
+    border-radius: 5px;
+    z-index: 11;
+    padding: 2rem;
+  }
+
+  /* オーバーレイ */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* キャンセルボタン */
+.button-cancel {
+  border: 0;
+  background: ffffff;
+  display: block;
+  margin: 50px auto 300px auto;
+  border: 2px solid #555;
+  padding: 15px 10px;
+  outline: none;
+  color: #858585;
+  border-radius: 25px;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: 80%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  box-shadow: 0px 5px 0 #000;
+}
+.button-cancel:hover {
+  background-color: #d42c41;
+  border: 2px solid #555;
+  color: #fff;
+  transform: translate(-50%, -50%) translate3d(0,5px,0);
+  box-shadow: none;
+}
+/* OKボタン */
+.button-ok {
+  border: 0;
+  background: #ffe3de;
+  display: block;
+  margin: 50px auto 300px auto;
+  border: 2px solid #fc0303;
+  padding: 15px 10px;
+  outline: none;
+  color: #858585;
+  border-radius: 25px;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: 80%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  box-shadow: 0px 5px 0 #000;
+}
+.button-ok:hover {
+  background-color: #d42c41;
+  border: 2px solid #555;
+  color: #fff;
+  transform: translate(-50%, -50%) translate3d(0, 5px, 0);
+  box-shadow: none;
+}

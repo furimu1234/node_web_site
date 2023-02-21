@@ -1,0 +1,277 @@
+body {
+    background-color: #f9476c;
+  }
+  
+  .logo{
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  }
+  
+  /*フォームのサイズ*/
+  .main {
+    width: 400px;
+    padding: 400px 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  /*黒文字比率?*/
+  form h1,form p {
+    color: black;
+    font-weight: 600;
+  }
+  
+  .go_index{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto 40px auto;
+    border: 2px solid #00c3ff;
+    padding: 15px 10px;
+    width: 200px;
+    outline: none;
+    color: #858585;
+    border-radius: 25px;
+    transition: 0.25s;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .go_index:hover {
+    background-color: #def7ff;
+    border: 2px solid #00c3ff;
+    color: #000;
+  }
+
+  /*黒文字大きさ*/
+  form p {
+    font-size: 19px;
+  }
+  
+  /*ログイン入力案内文字*/
+  ::placeholder{
+    color: #858585;
+    font-size: 15px;
+  }
+  
+  /*入力欄*/
+  .info {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto; /*間隔*/
+    border: 2px solid #e11d35; /*枠線の幅*/
+    padding: 15px 10px; /*枠線の中の幅*/
+    width: 300px; /*枠線の長さ*/
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    text-align: center;
+    color: #858585;
+  }
+  
+  /*入力欄変形*/
+  .info:focus {
+    width: 350px;
+    background-color: #ffe3de;
+    color: #000;
+  }
+  
+  
+  
+  /*ログインボタン*/
+  .button{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 40px auto 30px auto;
+    border: 2px solid #ff69b4;
+    padding: 15px 10px;
+    width: 200px;
+    outline: none;
+    color: #858585;
+    border-radius: 25px;
+    transition: 0.25s;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /*ログインボタン塗りつぶし*/
+  .button:hover {
+    background-color: #ffbdde;
+    border: 2px solid #ff69b4;
+  }
+  
+  /*新規登録*/
+  .btnnew{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 30px auto 30px auto;
+    border: 2px solid #00fff2;
+    padding: 15px 10px;
+    width: 300px;
+    outline: none;
+    color: #858585;
+    border-radius: 25px;
+    transition: 0.25s;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /*新規登録塗りつぶし*/
+  .btnnew:hover {
+    background-color: #c5fcfa;
+    border: 2px solid #00fff2;
+  }
+  
+  .errors {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ED5974;
+    border: 1px solid #e29a9a;
+    padding: 12px 34px;
+    line-height: 1.6;
+    border-radius: 6px;
+    list-style: outside;
+    background-color: #fff;
+    margin-top: 30px;
+  }
+
+  .retunloginbtn{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 40px auto 30px auto;
+    border: 2px solid #ff69b4;
+    padding: 15px 10px;
+    width: 300px;
+    outline: none;
+    color: #858585;
+    border-radius: 25px;
+    transition: 0.25s;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /*ログインに戻る塗りつぶし*/
+  .retunloginbtn:hover {
+    background-color: #ffbdde;
+    border: 2px solid #ff69b4;
+  }
+
+  .back_to_index{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto 40px auto;
+    border: 2px solid #00c3ff;
+    padding: 15px 10px;
+    width: 200px;
+    outline: none;
+    color: #858585;
+    border-radius: 25px;
+    transition: 0.25s;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  
+  /*マイページに戻る塗りつぶし*/
+  .back_to_index:hover {
+    background-color: #def7ff;
+    border: 2px solid #00c3ff;
+    color: #000;
+  }
+  
+  /* モーダルウィンドウ */
+  .modal-window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 550px;
+    background-color: #dfdddd;
+    border-radius: 5px;
+    z-index: 11;
+    padding: 2rem;
+  }
+
+  /* オーバーレイ */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* キャンセルボタン */
+.button-cancel {
+  border: 0;
+  background: ffffff;
+  display: block;
+  margin: 50px auto 300px auto;
+  border: 2px solid #555;
+  padding: 15px 10px;
+  outline: none;
+  color: #858585;
+  border-radius: 25px;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: 80%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  box-shadow: 0px 5px 0 #000;
+}
+.button-cancel:hover {
+  background-color: #d42c41;
+  border: 2px solid #555;
+  color: #fff;
+  transform: translate(-50%, -50%) translate3d(0,5px,0);
+  box-shadow: none;
+}
+/* OKボタン */
+.button-ok {
+  border: 0;
+  background: #ffe3de;
+  display: block;
+  margin: 50px auto 300px auto;
+  border: 2px solid #fc0303;
+  padding: 15px 10px;
+  outline: none;
+  color: #858585;
+  border-radius: 25px;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: 80%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  box-shadow: 0px 5px 0 #000;
+}
+.button-ok:hover {
+  background-color: #d42c41;
+  border: 2px solid #555;
+  color: #fff;
+  transform: translate(-50%, -50%) translate3d(0, 5px, 0);
+  box-shadow: none;
+}

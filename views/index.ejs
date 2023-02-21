@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style_index.css">
+<!-- <meta name="viewport" content="width=device-width"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1">  -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+<title>トップページ</title>
+<link rel="icon" href="/image/logo.png">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script type="text/javascript" src="script.js"></script> -->
+</head>
+<body>
+  
+  <header id="header" class="wrapper">
+    <h1 class="site-title"><a href="">HOME</a></h1>
+    <!-- <nav> -->
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#introduction">IntroductioN</a></li>
+        <li>
+          <form action="/login" method="get">
+            <input type="submit" class="button" value="ログイン">
+          </form>
+        </li>
+        <li>
+          <form action="/signup" method="get">
+            <input type="submit" class="button" value="新規登録">
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+     <main>
+      <div id="logo">
+        <img src="/image/logo.png">
+      </div>
+
+      <section id="about" class="wrapper">
+        <h2 class="section-title">AbouT</h2>
+        <div class="content">
+          <div class="text">
+            <h3 class="content-title">このサイトについて</h3>
+            <p>
+	予防医療の二次予防である「病気を重篤化させない」を目的とした医療サービスです。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="introduction" class="wrapper">
+        <h2 class="section-title">IntroductioN</h2>
+        <div class="content">
+          <div class="text">
+            <h3 class="content-title">制作チームから</h3>
+            <p>
+	私たち４班は卒業研究2022に向け、今まで学んできたITの知識を生かし、<br>
+	医療スタッフの負担軽減や予防医療の実現に向けた医療デバイスを開発しています。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>Copyright © 2022 FOURTH All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+<script type="text/javascript">
+  $(function(){
+    
+});
+</script>
+
+</html>

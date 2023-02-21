@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>アカウントの新規作成画面</title>
+    <link rel="icon" href="/image/logo.png">
+    <style>
+        li{
+            list-style: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="overlay" class="overlay"></div>
+    
+    <div class="modal-window">
+        <p>このアカウントを新規登録してもよろしいですか？</p><br>
+        
+        <p>ユーザーID</p>
+        <h3 id="ex1"></h3>
+        <p>メールアドレス</p>
+        <h3 id="ex2"></h3>
+        <!-- 閉じるボタン -->
+        <form action="/signup" method="post">
+            <input type="hidden" name="username" id="target1">
+            <input type="hidden" name="email" id="target2">
+            <input type="hidden" name="password" id="target3">
+            <input type="hidden" name="devicecode" id="target4">
+            <!-- <input type="hidden" name="devicecode" id="target4"> -->
+            <table>
+                <td><button type="button" class="js-cancel button-cancel">キャンセル</button></td>
+                <td><button type="submit" id="sinkibtn" class="js-ok button-ok">新規登録</button></td>
+            </table>
+        </form>
+    </div>
+    <!--ベーシックver
+<form name="login_form">
+
+<div class="login_form_top">
+<h1>ログイン画面</h1>
+<p>ユーザID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
+</div>
+
+<div class="login_form_btm">
+<input type="id" name="user_id" placeholder="ユーザーIDを入力してください"><br>
+<input type="password" name="password"placeholder="パスワードを入力してください">
+</div>
+
+<button type="submit">ログイン</button>
+</form>
+ベーシックver-->
+<div class="main">
+
+    <img src="/image/person.jpg" class="logo">
+    <div class="top">
+    <h1>アカウントの新規登録</h1>
+        <p>メールアドレス、ユーザーID、パスワード,デバイスコードをご入力してください。</p>
+    </div>
+
+  
+    <ul class="errors" id="message" style="display: none;">
+        <% if(errors.length > 0) { %> 
+                <% errors.forEach(error =>{ %>
+                    <li class="item"><%= error %></li>
+                <% }); %>
+        <% } %>
+    </ul>
+
+    <form action="/" method="get">
+        <input type="submit" value="トップページに戻る" class="go_index">
+    </form>
+
+    <!-- <form > -->
+            <div class="user_infomation">
+                <input type="text" id="username" class="info" name="username" placeholder="ユーザー名を入力してください">
+                <input type="text" id="email" class="info" name="email" placeholder="メールアドレスを入力してください">
+                <input type="password" id="password" class="info" name="password" placeholder="パスワードを入力してください">
+                <input type="text" id="devicecode" class="info" name="devicecode" placeholder="ユーザーコードを入力してください">
+            </div>
+            <div class="error">
+                <!-- *エラー文（仮） -->
+            </div>
+            <input type="submit" class="button" id="signupbtn"  value="登録">
+            <h3 class="hover" style="opacity: 0%;">登録してよろしいですか？</h3>
+    <!-- </form>   -->
+    
+    <form action="/login" method="get">
+        <input type="submit"  value="アカウントをお持ちの方" class="btnnew">
+    </form>
+        
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+ $('#signupbtn').hover(
+   function() {
+     $(".hover").animate({ opacity: 1 }, { duration: 100, easing: 'linear' })
+   },
+   function() {
+     $(".hover").animate({ opacity: 0 }, { duration: 100, easing: 'linear' })
+   }
+ );
+
+ window.onload = function(){
+    //  alert('Open Window!')
+     let error = document.querySelector('.item')
+     if(error){
+        if(error.value !== ''){
+         console.log(error.value)
+         $('.errors').show()
+     }
+     }
+ }
+
+$("#signupbtn").click(function(){
+        //modalに入力情報を表示するためのDOM操作
+        // let parent = document.getElementById('message')
+        $('.item').remove();
+        var username = document.getElementById("username");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var devicecode = document.getElementById("devicecode")
+		var ex1 = document.getElementById('ex1');
+		var ex2 = document.getElementById('ex2');
+        //errorを表示するためのDOM動作
+        var message = document.getElementById("message")
+        document.getElementById("target1").value = username.value;
+        document.getElementById("target2").value = email.value;
+        document.getElementById("target3").value = password.value;
+        document.getElementById("target4").value = devicecode.value;
+        ex1.innerText = username.value;
+        ex2.innerText = email.value;
+
+        //空チェック
+        let flag = 0
+
+        if(username.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'ユーザ名が空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        if(email.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'メールアドレスが空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        if(password.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'パスワードが空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        if(devicecode.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'デバイスコードが空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+
+        if(flag === 0){
+            $('.errors').css('display','none')
+            $(function () {
+                $("#overlay, .modal-window").fadeIn();
+                });
+
+                $(".js-cancel").on("click",function () {
+                $("#overlay, .modal-window").fadeOut();
+                });
+        }
+        else{
+            $(".errors").show()
+        }
+
+        
+		//   $(".js-ok").on("click",function () {
+  		//   window.location.href = "https://www.kca.ac.jp/";
+		//   });
+});
+
+            
+</script>
+    
+</body>
+</html>

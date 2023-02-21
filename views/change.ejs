@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>アカウントの新規作成画面</title>
+    <link rel="icon" href="/image/logo.png">
+    
+</head>
+<body>
+
+<div id="overlay" class="overlay"></div>
+
+  <!-- モーダルウィンドウ -->
+<div class="modal-window">
+	<p>この内容に変更してもよろしいですか？</p><br>
+	<p>ユーザーID</p>
+	<h3 id="ex1"></h3>
+	<p>メールアドレス</p>
+	<h3 id="ex2"></h3>
+    <p>しきい値</p>
+    <h3 id="ex3"></h3>
+    <!-- 閉じるボタン -->
+    <form action="/update/<%= locals.userId %> " method="post">
+        <input type="hidden" name="username" id="target1">
+        <input type="hidden" name="email" id="target2">
+        <input type="hidden" name="password" id="target3">
+        <input type="hidden" name="deviceid" value="<%= locals.deviceid %> ">
+        <input type="hidden" name="numlimit" id="target4">
+        <table>
+            <td><button type="button" class="js-cancel button-cancel">キャンセル</button></td>
+            <td><button type="submit" class="js-ok button-ok">変更</button></td>
+        </table>
+    </form>
+</div>
+
+    <!--ベーシックver
+<form name="login_form">
+
+<div class="login_form_top">
+<h1>ログイン画面</h1>
+<p>ユーザID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
+</div>
+
+<div class="login_form_btm">
+<input type="id" name="user_id" placeholder="ユーザーIDを入力してください"><br>
+<input type="password" name="password"placeholder="パスワードを入力してください">
+</div>
+
+<button type="submit">ログイン</button>
+</form>
+ベーシックver-->
+<div class="main">
+
+    <img src="/image/person.jpg" class="logo">
+    <div class="top">
+    <h1>アカウントの変更</h1>
+        <h2>変更したいメールアドレス、ユーザーID、パスワード,しきい値をご入力してください。</h2>
+    </div>
+    
+    <ul class="errors" id="message" style="display: none;"></ul>
+
+    <form action="/acount" method="get">
+        <input type="submit" value="アカウント詳細に戻る" class="go_index">
+    </form>
+
+    <!-- <form action="/update/<%= locals.userId %> " method="post" > -->
+            <div class="user_infomation">
+                <input type="text" class="info" id="username" name="username" placeholder="ユーザ名を入力してください" value="<%= locals.username %> ">
+                <input type="text" class="info" id="email" name="email" placeholder="メールアドレスを入力してください" value="<%= locals.email %> ">
+                <input type="password" class="info" id="password" name="password" placeholder="パスワードを入力してください" value="<%= locals.password %> " >
+                <input type="text" class="info" id="numlimit" name="numlimit" placeholder="ユーザーコードを入力してください" value="<%= locals.numlimit %> ">
+            </div>
+            
+            <input type="submit" class="button" id="changebtn" value="変更" >
+    <!-- </form>   -->
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+ $("#changebtn").click(function(){
+        $('.item').remove();
+        var username = document.getElementById("username");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        let numlimit = document.getElementById('numlimit')
+		var ex1 = document.getElementById('ex1');
+		var ex2 = document.getElementById('ex2');
+        let ex3 = document.getElementById('ex3')
+        let ex4 = document.getElementById('ex4')
+        var message = document.getElementById("message")
+        document.getElementById("target1").value = username.value;
+        document.getElementById("target2").value = email.value;
+        document.getElementById("target3").value = password.value;
+        document.getElementById('target4').value = numlimit.value
+        console.log(numlimit.value)
+        ex1.innerText = username.value
+        ex2.innerText = email.value
+        ex3.innerText = numlimit.value
+
+        //空チェック
+        let flag = 0
+
+        if(username.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'ユーザ名が空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        if(email.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'メールアドレスが空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        if(password.value === ''){
+            let item = document.createElement("li")
+            item.className = "item"
+            item.innerText = 'パスワードが空です'
+            message.appendChild(item)
+            flag = 1
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+
+        if(flag === 0){
+            $(function () {
+                $("#overlay, .modal-window").fadeIn();
+                });
+
+                $(".js-cancel").on("click",function () {
+                $("#overlay, .modal-window").fadeOut();
+                });
+        }else{
+            $(".errors").show()
+        }
+
+		//   $(function () {
+		//   $("#overlay, .modal-window").fadeIn();
+		//   });
+
+		//   $(".js-cancel").on("click",function () {
+  		//   $("#overlay, .modal-window").fadeOut();
+		//   });
+		//   $(".js-ok").on("click",function () {
+  		//   window.location.href = "https://www.kca.ac.jp/";
+		//   });
+            });
+</script>
+
+    
+</body>
+</html>

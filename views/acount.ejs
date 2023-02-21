@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_modal.css">
+    <link rel="stylesheet" href="/css/style_index.css">
+    <title>profile data</title>
+    <style>
+        .button{
+            cursor: pointer;
+        }
+        ul li{
+            list-style: none;
+            
+        }
+        .wrapper{
+            padding-top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header" class="wrapper">
+        <h1 class="site-title"><a href="">HOME</a></h1>
+        <nav>
+          <ul>
+            <!-- <li><a href="#about">About</a></li>
+            <li><a href="#introduction">IntroductioN</a></li> -->
+            <li>
+              <form action="/logout" method="get">
+                <input type="submit" class="button" value="ログアウト">
+            </form>
+            </li>
+            <li>
+              <form action="/my" method="get">
+                <input type="submit" value="マイページに戻る" class="button">
+              </form>
+            </li>
+            <li>
+                <form action="/change" method="get">
+                    <input type="submit" value="アカウント情報の変更" class="button">
+                </form>
+            </li>
+            <li>
+                <input type="submit" id="deletebtn" value="削除" class="button">
+            </li>
+          </ul>
+        </nav>
+      </header>
+    
+
+
+    
+
+    <main class="wrapper">
+            <p>ユーザー名</p><br>
+            <h3><%= locals.username %></h3><br>
+            <p>メールアドレス</p><br>
+            <h3><%= locals.email %></h3><br>
+            <p>しきい値</p>
+            <h3><%= locals.numlimit %></h3>
+    </main>
+    
+    <div id="overlay" class="overlay"></div>
+
+    <!-- モーダルウィンドウ -->
+    <div class="modal-window">
+        <p>このアカウントを削除してもよろしいですか？</p><br>
+        <p>ユーザー名</p>
+        <h3 id="ex1"><%= locals.username %> </h3>
+        <p>メールアドレス</p>
+        <h3 id="ex2"><%= locals.email %> </h3>
+      <!-- 閉じるボタン -->
+      <form action="/delete/<%= locals.userId %> " method="post">
+      <table>
+          <td><button type="button" class="js-cancel button-cancel">キャンセル</button></td>
+          <td><button type="submit" class="js-ok button-ok">削除</button></td>
+      </table>
+  </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+         $("#deletebtn").click(function(){
+                // username = document.getElementById("ex1");
+                // email = document.getElementById("ex2");
+
+        
+                $(function () {
+                $("#overlay, .modal-window").fadeIn();
+                });
+    
+                $(".js-cancel").on("click",function () {
+                $("#overlay, .modal-window").fadeOut();
+                });
+                $(".js-ok").on("click",function () {
+                window.location.href = "https://www.kca.ac.jp/";
+                });
+                });
+        </script>
+
+</body>
+
+</html>

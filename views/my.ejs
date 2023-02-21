@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="/css/style_index.css">
+  <title>Document</title>
+  <style>
+    input{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header id="header" class="wrapper">
+    <h1 >ようこそ、<%= locals.username %>さん</h1>
+    <nav>
+      <ul>
+        <li>
+          <form action="/acount" method="get">
+            <input type="submit" value="アカウント詳細" class="button">
+          </form>
+        </li>
+        <li>
+          <form action="/data/<%=locals.deviceid %>" method="get">
+            <input type="submit"  value="グラフ一覧" class="button">
+          </form>
+        </li>
+        <li>
+          <form action="/logout" method="get">
+            <input type="submit" class="button" value="ログアウト">
+        </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+   
+  </main>
+  <!-- <h1>ようこそ、<%= locals.username %>さん</h1>
+  <form action="/logout" method="get">
+    <input  type="submit" value="ログアウト" class="logout">
+  </form>
+
+  <form action="/acount" method="get">
+    <input type="submit" value="アカウント詳細">
+  </form>
+
+  <form action="/data" method="get">
+    <input type="submit" value="グラフ一覧" class="gurahu">
+  </form> -->
+  <script>
+    
+  </script>
+  
+</body>
+</html>
