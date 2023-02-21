@@ -7,6 +7,6 @@ COPY . .
 RUN npm install yarn
 
 RUN yarn install
-pkill -f node
+RUN pkill -f node
 
 EXPOSE 8080
